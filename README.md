@@ -171,7 +171,3 @@ POST /action=delete_category - Delete a category (admin only)
 - Passwords are hashed with SHA-256
 - CSRF tokens protect all forms
 - Everything is built with vanilla PHP (no frameworks)
-
-That's basically it. Clone it, set up the database, and you're good to go!
-
-For issues or questions, check the troubleshooting section or look at the code in `app/controllers/`.
