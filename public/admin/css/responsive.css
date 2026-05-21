@@ -1,0 +1,171 @@
+/* ======================== RESPONSIVE DESIGN ======================== */
+
+/* Tablets */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 200px;
+  }
+
+  .admin-content {
+    margin-left: 200px;
+    padding: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .content-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .table-responsive {
+    font-size: 13px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 10px;
+  }
+
+  .action-buttons {
+    flex-wrap: wrap;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .order-summary {
+    text-align: left;
+  }
+
+  .filter-tabs {
+    flex-wrap: wrap;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+  .admin-sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 15px;
+  }
+
+  .admin-content {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  .sidebar-nav {
+    display: none;
+  }
+
+  .sidebar-nav.active {
+    display: block;
+  }
+
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stat-icon {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .content-header h1 {
+    font-size: 24px;
+  }
+
+  .content-header {
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
+
+  .action-buttons {
+    gap: 5px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 8px 5px;
+    font-size: 12px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-size: 16px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .modal-content {
+    width: 95%;
+    margin: 50% auto;
+    padding: 20px;
+  }
+
+  .table-responsive {
+    font-size: 12px;
+  }
+
+  .card-header {
+    padding: 15px;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .admin-sidebar,
+  .action-buttons,
+  .btn,
+  .filter-tabs {
+    display: none;
+  }
+
+  .admin-content {
+    margin-left: 0;
+  }
+
+  .admin-table {
+    width: 100%;
+  }
+}
