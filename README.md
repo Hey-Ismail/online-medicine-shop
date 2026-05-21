@@ -1,97 +1,89 @@
 # Online Medicine Shop
 
-A full-stack web application for an online pharmaceutical e-commerce platform with user authentication, product catalog, shopping cart, order management, and comprehensive admin dashboard.
+A full-stack web application for an online pharmaceutical e-commerce platform. Customers can register, browse medicines, add them to cart, and checkout. Admins get a dashboard to manage products, categories, customers, and orders.
 
-## 🎯 Overview
+## Overview
 
-This project is a unified platform that combines:
+This project brings together three main systems:
 
-- **Authentication System**: User registration, login, and profile management
-- **E-Commerce Platform**: Browse and purchase medicines with cart and checkout functionality
-- **Admin Dashboard**: Manage medicines, categories, customers, and orders
-- **API Layer**: RESTful API endpoints for cart operations and other services
+- User authentication with login, registration, and profile management
+- E-commerce functionality with product catalog, shopping cart, and checkout
+- Admin dashboard to manage medicines, categories, customers, and orders
+- API endpoints for cart operations and other services
 
-## ✨ Key Features
+## Features
 
-### For Customers
+**Customer Side:**
 
-- 📝 User registration and login with remember-me functionality
-- 🏥 Browse medicines by category (liquid/solid)
-- 🛒 Shopping cart management
-- 💳 Secure checkout with shipping address and payment options
-- 📦 Order history and tracking
-- 👤 User profile management with profile pictures
+- User registration and login with remember-me
+- Browse medicines by category (liquid/solid)
+- Shopping cart with add/remove functionality
+- Checkout process with shipping address and payment
+- View order history and track orders
+- Manage user profile with picture uploads
 
-### For Admins
+**Admin Side:**
 
-- 📊 Dashboard with sales analytics
-- 💊 Medicine management (add, edit, delete)
-- 🏷️ Category management
-- 👥 Customer management
-- 📋 Order management with status tracking
-- 🛍️ Purchase history and requests
+- Dashboard to view sales and analytics
+- Add, edit, delete medicines and categories
+- Manage customer accounts
+- Update order status (pending, accepted, rejected)
+- View purchase history and requests
 
-### Technical Features
+**Technical:**
 
-- 🔐 Secure password hashing
-- 🛡️ CSRF protection
-- 📱 Responsive UI design
-- ⚡ RESTful API architecture
-- 🔄 Session management with auto-login
+- Secure password hashing
+- CSRF protection on forms
+- Responsive design for mobile and desktop
+- RESTful API architecture
+- Session-based authentication with auto-login
 
-## 🛠️ Technology Stack
+## Tech Stack
 
-| Layer        | Technology              |
-| ------------ | ----------------------- |
-| **Backend**  | PHP 8+ (OOP, PDO)       |
-| **Frontend** | HTML5, CSS3, JavaScript |
-| **Database** | MySQL 5.7+              |
-| **Server**   | Apache (XAMPP/Local)    |
-| **API**      | JSON-based REST API     |
+- **Backend**: PHP 8+ (OOP, PDO)
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Database**: MySQL 5.7+
+- **Server**: Apache (XAMPP)
+- **API**: JSON-based REST
 
-## 📋 Requirements
+## Requirements
+
+You'll need:
 
 - PHP 8.0 or higher
 - MySQL 5.7 or higher
-- Apache server (XAMPP recommended)
-- Composer (optional, for dependency management)
+- Apache (XAMPP is easiest)
 
-## 🚀 Setup Instructions
+## Getting Started
 
-### 1. Prerequisites
+### Set up the database
 
-Ensure you have XAMPP or a similar local development environment installed.
+Import the database schema:
 
-### 2. Database Setup
+```bash
+mysql -u root -p < config/schema.sql
+```
 
-1. **Create Database**
+Or import `config/schema.sql` through phpMyAdmin.
 
-   ```bash
-   mysql -u root -p < config/schema.sql
-   ```
+Then update your database credentials in `config/database.php`:
 
-   Or use phpMyAdmin to import `config/schema.sql`
+```php
+define('DB_HOST', 'localhost');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'medicine_shop');
+```
 
-2. **Configure Database Connection**
-   Edit `config/database.php`:
-   ```php
-   define('DB_HOST', 'localhost');
-   define('DB_USER', 'root');
-   define('DB_PASS', '');
-   define('DB_NAME', 'medicine_shop');
-   ```
+### Install the project
 
-### 3. Project Installation
-
-1. **Clone/Extract Project**
-   - Place the project in your Apache `htdocs` folder:
+1. Extract the project into your Apache htdocs folder:
 
    ```
    htdocs/online-medicine-shop
    ```
 
-2. **Set File Permissions**
-   - Ensure the `public/uploads` and `public/*/uploads` directories are writable:
+2. Make sure the upload folders are writable:
 
    ```bash
    chmod -R 755 public/uploads
@@ -99,223 +91,87 @@ Ensure you have XAMPP or a similar local development environment installed.
    chmod -R 755 public/auth/uploads
    ```
 
-3. **Start Development Server**
-   - Open XAMPP and start Apache and MySQL
-   - Access the application:
+3. Start XAMPP and launch Apache + MySQL
+
+4. Open your browser and go to:
    ```
    http://localhost/online-medicine-shop
    ```
 
-## 📁 Project Structure
+That's it!
 
-```
-online-medicine-shop/
-├── app/
-│   ├── controllers/          # Request handlers
-│   │   ├── admin/           # Admin functionality
-│   │   ├── auth/            # Authentication & pages
-│   │   └── shop/            # E-commerce functionality
-│   ├── models/              # Data models
-│   │   ├── admin/
-│   │   ├── auth/
-│   │   └── shop/
-│   └── views/               # UI templates
-│       ├── admin/           # Admin dashboard views
-│       ├── auth/            # Customer-facing views
-│       └── shop/            # Shop views
-├── config/
-│   ├── config.php           # Application configuration
-│   ├── database.php         # Database credentials
-│   └── schema.sql           # Database schema
-├── core/
-│   ├── Auth.php             # Authentication logic
-│   ├── Autoload.php         # PSR-4 autoloader
-│   ├── Controller.php       # Base controller
-│   ├── Csrf.php             # CSRF token management
-│   └── Database.php         # PDO database singleton
-├── public/
-│   ├── admin/               # Admin static assets
-│   ├── auth/                # Customer static assets
-│   ├── shop/                # Shop static assets
-│   └── uploads/             # User-uploaded files
-├── routes/
-│   └── web.php              # Route definitions
-├── index.php                # Application entry point
-└── README.md               # This file
-```
+## Database Schema
 
-## 🔄 Database Schema
+The main tables:
 
-### Core Tables
+- **users**: Customer and admin accounts
+- **categories**: Medicine categories (liquid/solid)
+- **medicines**: The product catalog
+- **cart**: Shopping cart items
+- **orders**: Customer orders with status
+- **order_items**: Individual items in each order
+- **payments**: Payment records
 
-**users** - User accounts and profiles
+## How It Works
 
-- Roles: admin, customer
-- Tracks: name, email, password_hash, address, phone, profile_picture
+The app uses a simple controller-model-view structure.
 
-**categories** - Medicine categories
+**Authentication**: Users register and login. Passwords are hashed. Sessions keep users logged in with an optional remember-me feature.
 
-- Types: liquid, solid
-- Used for medicine classification
+## Using the App
 
-**medicines** - Product catalog
+**As a customer:**
 
-- Fields: name, category_id, vendor, price, availability, description, image_path
-- Foreign key: category_id → categories.id
-
-**cart** - Shopping cart items
-
-- Fields: user_id, medicine_id, quantity
-- Unique constraint: (user_id, medicine_id)
-
-**orders** - Customer orders
-
-- Status: pending, accepted, rejected
-- Tracks: user_id, total_amount, shipping_address, payment_method
-
-**order_items** - Items within orders
-
-- Fields: order_id, medicine_id, quantity, unit_price
-
-**payments** - Payment records
-
-- Linked to orders for transaction tracking
-
-## 🔐 Authentication & Security
-
-- **Password Security**: SHA-256 hashing with salts
-- **Session Management**: PHP session-based with remember-me tokens
-- **CSRF Protection**: Token validation for form submissions
-- **Input Validation**: Server-side validation on all inputs
-- **Database Security**: PDO prepared statements for SQL injection prevention
-
-## 📚 Key Controllers
-
-### Admin Controller
-
-- `AdminController.php` - Manages admin operations
-- **Methods**: deleteCategory(), editCategory(), addMedicine(), etc.
-
-### Auth Controller
-
-- `AuthController.php` - User registration and login
-- `HomeController.php` - Home page display
-- `ProfileController.php` - User profile management
-
-### Shop Controllers
-
-- `MedicinesController.php` - Browse and display medicines
-- `CartController.php` - Cart management
-- `CartApiController.php` - AJAX cart operations
-- `CheckoutController.php` - Order creation and checkout
-- `OrderController.php` - Order history and tracking
-
-## 🎨 Frontend Features
-
-### Customer Interface
-
-- Responsive medicine browsing with search and filtering
-- Dynamic cart management with AJAX
-- Multi-step checkout process
-- Order confirmation and history
-
-### Admin Interface
-
-- Dashboard with key metrics
-- Data tables for managing medicines, categories, and customers
-- Form validation with real-time feedback
-- Status indicators for order tracking
-
-## 🔗 API Endpoints
-
-The application includes JSON API endpoints (typically accessed via AJAX):
-
-- `POST /action=cart_add` - Add item to cart
-- `POST /action=cart_remove` - Remove item from cart
-- `POST /action=delete_category` - Delete category (admin)
-- `POST /shop/index.php` - Get medicines (API)
-
-## 🚀 Usage
-
-### Customer Flow
-
-1. Register a new account
+1. Sign up or login
 2. Browse medicines by category
-3. Add items to cart
-4. Proceed to checkout
-5. Enter shipping address
-6. Complete payment
-7. View order history
+3. Add stuff to your cart
+4. Checkout with your shipping address
+5. Complete payment
+6. Check your order history anytime
 
-### Admin Flow
+**As an admin:**
 
-1. Login as admin
-2. Access dashboard
-3. Manage medicines and categories
-4. Manage customers
-5. Review and update order status
+1. Login with admin account
+2. Add/edit/delete medicines
+3. Manage categories
+4. View all customers and their orders
+5. Update order statuses when they're ready to ship
 
-## 📝 Environment Configuration
+## API Endpoints
 
-Edit `config/database.php` for your environment:
+If you need to interact with the cart or medicines programmatically:
 
-```php
-define('DB_HOST', 'localhost');  // Database host
-define('DB_USER', 'root');       // Database username
-define('DB_PASS', '');           // Database password
-define('DB_NAME', 'medicine_shop');  // Database name
+```
+POST /action=cart_add - Add item to cart
+POST /action=cart_remove - Remove item from cart
+POST /action=delete_category - Delete a category (admin only)
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
-### Database Connection Error
+**MySQL connection issues:**
 
-- Check MySQL is running
-- Verify credentials in `config/database.php`
-- Ensure database `medicine_shop` exists
+- Make sure MySQL is running in XAMPP
+- Check your credentials in `config/database.php`
+- Verify the `medicine_shop` database exists
 
-### File Upload Issues
+**File upload not working:**
 
-- Verify `public/uploads/` has write permissions
-- Check PHP `upload_max_filesize` setting
+- Check that `public/uploads/` folder is writable
+- Look at your PHP `upload_max_filesize` setting
 
-### Session Issues
+**Session/Login problems:**
 
-- Clear browser cookies and session data
-- Ensure `session_start()` is called in `index.php`
-
-## 🤝 Contributing
-
-To contribute to this project:
-
-1. Create a feature branch
-2. Make your changes
-3. Test thoroughly
-4. Submit a pull request
-
-## 📄 License
-
-This project is provided as-is for educational and commercial use.
-
-## 📞 Support
-
-For issues or questions:
-
-- Check the troubleshooting section
-- Review database schema in `config/schema.sql`
-- Verify controller logic in `app/controllers/`
-
----
-
-**Last Updated**: May 2026  
-**Version**: 1.0.0
-
-- Authentication system integrated into app/controllers/auth
-- Shopping module integrated into app/controllers/shop
-- Admin system integrated into app/controllers/admin
-- Shared configs moved into config/
-- Shared assets moved into public/
+- Clear your browser cookies
+- Make sure `session_start()` is called at the top of `index.php`
 
 ## Notes
 
-Some duplicated model names (Medicine, User, Category) were separated into module-specific folders to avoid collisions.
+- The app uses PDO for database queries, so it's safe from SQL injection
+- Passwords are hashed with SHA-256
+- CSRF tokens protect all forms
+- Everything is built with vanilla PHP (no frameworks)
+
+That's basically it. Clone it, set up the database, and you're good to go!
+
+For issues or questions, check the troubleshooting section or look at the code in `app/controllers/`.
